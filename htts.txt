@@ -1,0 +1,343 @@
+https://github.com/Shahnewaz-saadi/micro
+
+
+LED Blinking.
+
+Code: 
+1. void main() { 
+while(1){ 
+2.      TRISB = 0x00; 
+3.       
+4.      
+5.         
+PORTB=0xFF; 
+6.         
+delay_ms(1000); 
+7.         
+PORTB=0x00; 
+8.         
+delay_ms(1000); 
+9.      }
+
+
+ 7 Segment(1 digit and 4 digit). 
+
+
+Code: 
+1. char array[]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90}  ; 
+int i=0; 
+2. void main() { 
+3.            
+4.            
+TRISB = 0x00;   
+5.            
+portb=0x00;     
+6.            
+while(1) 
+7.            
+{ 
+8.              
+for(i=0;i<=9;i++) 
+9.                
+{ 
+10.                   
+portb=array[i]; 
+11.                    
+delay_ms(1000); 
+12.                 
+} 
+13.            
+} 
+14. } 
+15.  
+
+
+
+Controlling AC current by DC current.
+
+
+ 
+Code: 
+ 1. char array[]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90}   
+ 2. void main() { 
+ 3.           int i,j,digit1,digit2,digit3,digit4; 
+ 4.         TRISB=0x00; 
+ 5.           TRISC=0x00; 
+ 6.         portb=0x00; 
+ 7.          portc=0x00; 
+ 8.         while(1){ 
+ 9.           for( i=0;i<=9999;i++) 
+10.           {    digit1 = i/1000; 
+11.                 digit2 = (i/100)%10; 
+12.                 digit3= (i/10)%10; 
+13.                digit4=i%10  ; 
+14.               for (j=0;j<50;j++){ 
+15.              portc.f0=0xff; 
+16.               portb=array[digit1]; 
+17.              delay_ms(5); 
+18.              portc.f0=0x00; 
+19.               portc.f1=0xff; 
+20.              portb=array[digit2]; 
+21.               delay_ms(5); 
+22.               portc.f1=0x00; 
+23.               portc.f2=0xff; 
+24.               portb=array[digit3]; 
+25.                 delay_ms(5); 
+26.               portc.f2=0x00; 
+27.               portc.f3=0xff; 
+28.               portb=array[digit4]; 
+29.               delay_ms(5); 
+30.               portc.f3=0x00; 
+31.               } 
+32.               }}}
+
+
+
+
+ Analog signal input in the microcontroller or Display ADC value 
+in the virtual terminal.
+
+Code: 
+1. int valADC; 
+2. char x[4]; 
+3.   
+4. void main() { 
+5.   
+6.     UART1_Init(9600); 
+7.     ADC_Init(); 
+8.     while(1) 
+9.     { 
+10.     valADC = ADC_Read(3); 
+11.     IntToStr(valADC,x); 
+12.      
+13.     UART1_Write_Text("analog value = "); 
+14.     UART1_Write_Text(x); 
+15.      
+16.     strcpy(x,""); 
+17.     UART1_Write(13); 
+18.     Delay_ms(1000); 
+19.      
+20.     } 
+21.      
+22. }
+
+
+
+
+ LM35 Temperature Sensor Data Read and Display Using LCD 
+Module. 
+
+
+Code: 
+ 1.  1. char i;  
+ 2.  2. sbit LCD_RS at RB2_bit; 
+ 3.  3. sbit LCD_EN at RB3_bit; 
+ 4.  4. sbit LCD_D4 at RB4_bit; 
+ 5.  5. sbit LCD_D5 at RB5_bit; 
+ 6.  6. sbit LCD_D6 at RB6_bit; 
+ 7.  7. sbit LCD_D7 at RB7_bit; 
+ 8.  9. sbit LCD_RS_Direction at TRISB2_bit; 
+ 9. 10. sbit LCD_EN_Direction at TRISB3_bit; 
+10. 11. sbit LCD_D4_Direction at TRISB4_bit; 
+11. 12. sbit LCD_D5_Direction at TRISB5_bit; 
+12. 13. sbit LCD_D6_Direction at TRISB6_bit; 
+13. 14. sbit LCD_D7_Direction at TRISB7_bit; 
+14. 16. char txt1[] = "Temperature = ";  
+15. 18.  float temperature,valADC,result; 
+16. 19.  char x[4]; 
+17. 20void main(){ 
+18. 23.   ADCON1 = 0x06;  
+19. 24.   CMCON = 0x07;   
+20. 25.    ADC_Init(); 
+21. 26.   Lcd_Init();  
+22. .   Lcd_Cmd(_LCD_CLEAR);      
+23. 29 
+24. 31.   Lcd_Out(1, 6, "showing Tep");      
+25. 33.             delay_ms(2000); 
+26. 34.             Lcd_Cmd(_LCD_CLEAR); 
+27. 36.   while(1) 
+28. 37.     { 
+29. 38.     valADC = ADC_Read(3);  
+30. 41.     temperature=    (valADC*4.88)/10; 
+31. 42.      FloatToStr(temperature,x); 
+32. 44.   Lcd_Cmd(_LCD_CLEAR); 
+33. 46.        Lcd_Out(1, 1,"temp="); 
+34. 47.         Lcd_Out(1, 8,x); 
+35. 48.         lcd_chr(1,16,223); 
+36. 49.         lcd_out_cp( "c"); 
+37. 50.     strcpy(x,""); 
+38. 51.     Delay_ms(1000); 
+39. 55.     } 
+40. 56. } 
+
+
+DC Motor Speed Control Using PWM and Microcontroller.
+Code: 
+1. void main() { 
+2.    short duty = 0;          
+3.    TRISB = 0x00;            
+4.    TRISD = 0xFF;            
+5.    PORTB.F0 = 0xFF;         
+6.    PORTB.F1 = 0x00;         
+7.   
+8.    PWM2_Init(1000);         
+9.    PWM2_Start();            
+10.    PWM2_Set_Duty(duty);     
+11.   
+12.    while (1) { 
+13.        
+14.       if (PORTD.F0 == 1 && duty < 240) { 
+15.          
+Delay_ms(1000);    
+16.          
+if (PORTD.F0 == 1 && duty < 240) {   
+17.             
+duty += 10;                      
+18.             
+//PWM2_Set_Duty(duty);             
+19.          
+} 
+20.       } 
+21.   
+22.       if (PORTD.F1 == 1 && duty > 0) { 
+23.          
+Delay_ms(1000);    
+24.          
+if (PORTD.F1 == 1 && duty > 0) {    
+25.             
+duty -= 10;                      
+26.             
+//PWM2_Set_Duty(duty);             
+27.          
+} 
+28.       } 
+29.    } 
+30. } 
+31.  
+
+
+
+
+Interfacing Servo Motor with PIC Microcontroller.
+
+ void servoRotate0() 
+ 2. { 
+ 3.     int I;  
+ 4.    for (i=0;i<50;i++) 
+ 5.    {   PORTB.F0=1; 
+ 6.       Delay_us(800); 
+ 7.       PORTB.F0=0; 
+ 8.        Delay_us(19200);  
+ 9.    } 
+10. } 
+11. void servoRotate90() 
+12. { 
+13.     int j; 
+14.    for (j=0;j<50;j++) 
+15.    {   PORTB.F0=1; 
+16.       Delay_us(1500); 
+17.       PORTB.F0=0; 
+18.        Delay_us(18500); 
+19.    } 
+20. } 
+21. void servoRotate180() 
+22. { 
+23.    unsigned int i; 
+24.    for (i=0;i<50;i++) 
+25.    {   PORTB.F0=1; 
+26.       Delay_us(2200); 
+27.       PORTB.F0=0; 
+28.        Delay_us(17800); 
+29.    } 
+30.   
+31. } 
+32. void main() { 
+33.          TRISB=0x00; 
+34.          PORTB=0x00; 
+35.          while(1) 
+36.          {  servoRotate0(); 
+37.             delay_ms(2000); 
+38.             servoRotate90(); 
+39.             delay_ms(2000); 
+40.             servoRotate180(); 
+41.             delay_ms(2000); 
+42.          }} 
+
+
+
+
+ Dot Matrix Display Interfacing With PIC16F877A 
+Microcontroller.
+
+1. void main() { 
+2.    TRISB = 0x00;    
+3.    TRISD = 0x00;    
+4.   
+5.    while(1) { 
+6.      PORTD = 0b10000000; 
+7.      PORTB = 0b00000000; 
+8.      delay_ms(5); 
+9.      PORTD = 0b01000000; 
+10.      PORTB = 0b11111111; 
+11.      delay_ms(5); 
+12.      PORTD = 0b00100000; 
+13.      PORTB = 0b11111111; 
+14.      delay_ms(5); 
+15.      PORTD = 0b00010000; 
+16.      PORTB = 0b00011000; 
+17.      delay_ms(5); 
+18.      PORTD = 0b00001000; 
+19.      PORTB = 0b00011000; 
+20.      delay_ms(5); 
+21.      PORTD = 0b00000100; 
+22.      PORTB = 0b11111111; 
+23.      delay_ms(5); 
+24.      PORTD = 0b00000010; 
+25.      PORTB = 0b11111111; 
+26.      delay_ms(5); 
+27.      PORTD = 0b00000001; 
+28.      PORTB = 0b00000000; 
+29.      delay_ms(5); 
+30.    } 
+31. } 
+32.   
+
+
+
+ Stepper Motor Interfacing With PIC16F877A Microcontroller.
+
+. void main() { 
+2.     TRISD = 0x00;    
+3.     PORTD = 0xFF;    
+4.   
+5.     while(1) { 
+6.         
+PORTD = 0b00000011;    
+7.         
+delay_ms(2000);         
+8.   
+9.         
+PORTD = 0b00000110; 
+10.         
+delay_ms(2000); 
+11.   
+12.         
+PORTD = 0b00000011; 
+13.         
+delay_ms(2000); 
+14.   
+15.         
+PORTD = 0b00001100; 
+16.         
+delay_ms(2000); 
+17.   
+18.         
+PORTD = 0b00001001; 
+19.         
+delay_ms(2000); 
+20.     } 
+21. }
+
+
+
+
