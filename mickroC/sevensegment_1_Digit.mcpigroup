@@ -1,0 +1,6 @@
+[PROJECTS]
+Count=2
+Project0=LED_Blinkong.mcppi
+Project1=sevensegment_1_Digit.mcppi
+[ActiveProject]
+Index=1

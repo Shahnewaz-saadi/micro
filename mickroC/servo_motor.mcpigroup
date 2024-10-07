@@ -1,0 +1,7 @@
+[PROJECTS]
+Count=3
+Project0=Analag_To_Digital_con.mcppi
+Project1=Temperature_sensor_Lm35.mcppi
+Project2=servo_motor.mcppi
+[ActiveProject]
+Index=2
