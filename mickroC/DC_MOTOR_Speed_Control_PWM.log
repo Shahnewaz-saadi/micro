@@ -1,0 +1,9 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -DL -O11111114 -fo8 -N"E:\CSE 4-2\Controller\mickroC\DC_MOTOR_Speed_Control_PWM.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"E:\CSE 4-2\Controller\mickroC\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "DC_MOTOR_Speed_Control_PWM.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	DC_MOTOR_Speed_Control_PWM.c
+error: 8	324	Undeclared identifier 'PWM1_Init' in expression	DC_MOTOR_Speed_Control_PWM.c
+error: 9	324	Undeclared identifier 'PWM1_Start' in expression	DC_MOTOR_Speed_Control_PWM.c
+error: 10	324	Undeclared identifier 'PWM1_Set_Duty' in expression	DC_MOTOR_Speed_Control_PWM.c
+error: 18	324	Undeclared identifier 'PWM1_Set_Duty' in expression	DC_MOTOR_Speed_Control_PWM.c
+error: 27	324	Undeclared identifier 'PWM1_Set_Duty' in expression	DC_MOTOR_Speed_Control_PWM.c
+error: 0	102	Finished (with errors): 06 Oct 2024, 00:16:00	DC_MOTOR_Speed_Control_PWM.mcppi
