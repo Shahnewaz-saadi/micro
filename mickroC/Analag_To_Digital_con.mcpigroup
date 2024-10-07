@@ -1,0 +1,10 @@
+[PROJECTS]
+Count=6
+Project0=sevensegment_1_Digit.mcppi
+Project1=Multiplixing_&_Seg.mcppi
+Project2=DC_MOTOR.mcppi
+Project3=DC_MOTOR_Speed_Control_PWM.mcppi
+Project4=DC_MOTOR_Speed_Control_PWM12.mcppi
+Project5=Analag_To_Digital_con.mcppi
+[ActiveProject]
+Index=5
